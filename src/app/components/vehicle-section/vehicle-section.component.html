@@ -101,13 +101,6 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="transitDate">
-          <th mat-header-cell *matHeaderCellDef>Transit</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.transitDate | date }}
-          </td>
-        </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="trackerDisplayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: trackerDisplayedColumns"></tr>
       </table>
