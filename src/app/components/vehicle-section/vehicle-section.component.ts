@@ -41,7 +41,6 @@ export class VehicleSectionComponent implements OnInit {
     etaEndDate: Date | null;
     productionDate: Date | null;
     shipmentDate: Date | null;
-    transitDate: Date | null;
     shippingDays: number | null;
   }[] = [
     {
@@ -51,7 +50,6 @@ export class VehicleSectionComponent implements OnInit {
       etaEndDate: null,
       productionDate: null,
       shipmentDate: null,
-      transitDate: null,
       shippingDays: null,
     },
   ];
@@ -63,7 +61,6 @@ export class VehicleSectionComponent implements OnInit {
     'productionDate',
     'releaseDate',
     'shipmentDate',
-    // 'transitDate',
     'shippingDays',
   ];
 
@@ -99,7 +96,6 @@ export class VehicleSectionComponent implements OnInit {
         'productionDate',
         'releaseDate',
         'shipmentDate',
-        // 'transitDate',
         'shippingDays',
       ];
 
@@ -132,7 +128,6 @@ export class VehicleSectionComponent implements OnInit {
           'productionDate',
           'releaseDate',
           'shipmentDate',
-          // 'transitDate',
           'shippingDays',
         ];
 
@@ -165,7 +160,6 @@ export class VehicleSectionComponent implements OnInit {
           'productionDate',
           'releaseDate',
           'shipmentDate',
-          // 'transitDate',
           'shippingDays',
         ];
 
@@ -196,7 +190,6 @@ export class VehicleSectionComponent implements OnInit {
         'productionDate',
         'releaseDate',
         'shipmentDate',
-        'transitDate',
         'shippingDays',
       ];
 
@@ -322,9 +315,6 @@ export class VehicleSectionComponent implements OnInit {
           shipmentDate: this.trackerData.shipmentDate
             ? new Date(this.trackerData.shipmentDate)
             : null,
-          transitDate: this.trackerData.transitDate
-            ? new Date(this.trackerData.transitDate)
-            : null,
           shippingDays: Number(this.trackerData.transitDate) || null,
         },
       ];
@@ -337,7 +327,6 @@ export class VehicleSectionComponent implements OnInit {
         etaEndDate: null,
         productionDate: null,
         shipmentDate: null,
-        transitDate: null,
         shippingDays: null,
       },
     ];
