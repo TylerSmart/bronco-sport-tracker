@@ -164,3 +164,24 @@ td {
     }
   }
 }
+
+.chip {
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 18px;
+  display: inline-block;
+
+  &.reserved {
+    background-color: red;
+  }
+}
+
+.error {
+  font-family: Consolas;
+  color: red;
+  margin: 20px;
+}
+
+mat-progress-bar {
+  margin: 20px 0;
+}

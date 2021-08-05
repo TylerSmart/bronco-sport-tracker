@@ -239,25 +239,46 @@ export class VehicleSectionComponent implements OnInit {
   }
 
   get images() {
-    if (this.trackerData)
-      return [
-        ...Array.from({
-          length: Number(this.trackerData.attributes.digExteriorAngles),
-        }).map(
-          (_, i) =>
-            `https://build.ford.com/dig/Ford/Bronco%20Sport/2021/HD-TILE/${
-              this.trackerData?.custOrderImgToken
-            }/EXT/${i + 1}/vehicle.png`
-        ),
-        ...Array.from({
-          length: Number(this.trackerData.attributes.digInteriorAngles),
-        }).map(
-          (_, i) =>
-            `https://build.ford.com/dig/Ford/Bronco%20Sport/2021/HD-TILE/${
-              this.trackerData?.custOrderImgToken
-            }/INT/${i + 1}/vehicle.png`
-        ),
-      ];
+    if (this.trackerData) {
+      if (this.vehicle.type == 'sport')
+        return [
+          ...Array.from({
+            length: Number(this.trackerData.attributes.digExteriorAngles),
+          }).map(
+            (_, i) =>
+              `https://build.ford.com/dig/Ford/Bronco%20Sport/2021/HD-TILE/${
+                this.trackerData?.custOrderImgToken
+              }/EXT/${i + 1}/vehicle.png`
+          ),
+          ...Array.from({
+            length: Number(this.trackerData.attributes.digInteriorAngles),
+          }).map(
+            (_, i) =>
+              `https://build.ford.com/dig/Ford/Bronco%20Sport/2021/HD-TILE/${
+                this.trackerData?.custOrderImgToken
+              }/INT/${i + 1}/vehicle.png`
+          ),
+        ];
+      if (this.vehicle.type == 'bronco')
+        return [
+          ...Array.from({
+            length: Number(this.trackerData.attributes.digExteriorAngles),
+          }).map(
+            (_, i) =>
+              `https://build.ford.com/dig/Ford/Bronco/2021/HD-TILE/${
+                this.trackerData?.custOrderImgToken
+              }/EXT/${i + 1}/vehicle.png`
+          ),
+          ...Array.from({
+            length: Number(this.trackerData.attributes.digInteriorAngles),
+          }).map(
+            (_, i) =>
+              `https://build.ford.com/dig/Ford/Bronco/2021/HD-TILE/${
+                this.trackerData?.custOrderImgToken
+              }/INT/${i + 1}/vehicle.png`
+          ),
+        ];
+    }
 
     return [];
   }
@@ -370,5 +391,9 @@ export class VehicleSectionComponent implements OnInit {
         .slice(2);
 
     return '';
+  }
+
+  get reserved() {
+    return this.vehicle.reserved;
   }
 }

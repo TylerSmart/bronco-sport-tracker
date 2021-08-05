@@ -1,6 +1,9 @@
-<main *ngIf="trackerData && etisData">
+<main *ngIf="trackerData && etisData && !error">
   <div class="data">
-    <h1>{{ name }} {{ trim }}</h1>
+    <h1>
+      {{ name }} {{ trim }}
+      <div class="reserved chip" *ngIf="reserved">RESERVED</div>
+    </h1>
     <h2>Status: {{ status }}</h2>
     <h3 class="vin">VIN: {{ vin }}</h3>
     <h3 class="order">Order Number: {{ order }}</h3>
@@ -177,4 +180,8 @@
     </mat-expansion-panel>
   </mat-accordion>
 </main>
+
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
+<p *ngIf="error" class="error">{{ error.message }}</p>
 <mat-divider></mat-divider>

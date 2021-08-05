@@ -50,7 +50,17 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<app-vehicle-section
-  *ngFor="let vehicle of vehicles"
-  [vehicle]="vehicle"
-></app-vehicle-section>
+<mat-tab-group>
+  <mat-tab label="Bronco Sport">
+    <app-vehicle-section
+      *ngFor="let sport of sports"
+      [vehicle]="sport"
+    ></app-vehicle-section>
+  </mat-tab>
+  <mat-tab label="Bronco">
+    <app-vehicle-section
+      *ngFor="let bronco of broncos"
+      [vehicle]="bronco"
+    ></app-vehicle-section>
+  </mat-tab>
+</mat-tab-group>
