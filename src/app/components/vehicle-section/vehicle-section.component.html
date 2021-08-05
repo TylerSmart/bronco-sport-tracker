@@ -1,0 +1,180 @@
+<main *ngIf="trackerData && etisData">
+  <div class="data">
+    <h1>{{ name }} {{ trim }}</h1>
+    <h2>Status: {{ status }}</h2>
+    <h3 class="vin">VIN: {{ vin }}</h3>
+    <h3 class="order">Order Number: {{ order }}</h3>
+
+    <div class="color-blocks">
+      <div class="color-block">
+        <h4>Exterior</h4>
+        <div
+          class="color-circle"
+          style="background-color: #{{ exteriorColor }};"
+        ></div>
+        <h4>{{ exteriorColorName }}</h4>
+      </div>
+
+      <div class="color-block">
+        <h4>Interior</h4>
+        <div
+          class="color-circle"
+          style="background-color: #{{ interiorColor }};"
+        ></div>
+        <h4>{{ interiorColorName }}</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="links">
+    <a mat-raised-button [href]="windowSticker" target="_blank"
+      >Window Sticker</a
+    >
+  </div>
+
+  <carousel
+    [width]="carouselSize.width"
+    [height]="carouselSize.height"
+    [cellWidth]="carouselSize.width"
+    [dots]="true"
+    [loop]="true"
+    [transitionDuration]="1000"
+  >
+    <div class="carousel-cell" *ngFor="let image of images">
+      <img [src]="image" />
+    </div>
+  </carousel>
+
+  <mat-accordion class="dates">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tracker Dates</mat-panel-title>
+      </mat-expansion-panel-header>
+      <table mat-table [dataSource]="trackerDataSource">
+        <ng-container matColumnDef="receiptDate">
+          <th mat-header-cell *matHeaderCellDef>Order Confirmed</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.receiptDate | date }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="releaseDate">
+          <th mat-header-cell *matHeaderCellDef>Released</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.releaseDate | date }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="etaStartDate">
+          <th mat-header-cell *matHeaderCellDef>Est. Start</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.etaStartDate | date }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="etaEndDate">
+          <th mat-header-cell *matHeaderCellDef>Est. End</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.etaEndDate | date }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="productionDate">
+          <th mat-header-cell *matHeaderCellDef>In Production</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.productionDate | date }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="shipmentDate">
+          <th mat-header-cell *matHeaderCellDef>Shipped</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.shipmentDate | date }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="shippingDays">
+          <th mat-header-cell *matHeaderCellDef>Est. Shipping</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.shippingDays }}
+            <ng-container *ngIf="element.shippingDays">days</ng-container>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="transitDate">
+          <th mat-header-cell *matHeaderCellDef>Transit</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.transitDate | date }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="trackerDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: trackerDisplayedColumns"></tr>
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion class="parts">
+    <mat-expansion-panel [expanded]="false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Etis Data</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <table mat-table [dataSource]="etisDataSource">
+        <ng-container matColumnDef="acronym">
+          <th mat-header-cell *matHeaderCellDef>Acronym</th>
+          <td mat-cell *matCellDef="let element">{{ element.acronym }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nodeId">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.nodeId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Desc</th>
+          <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="assemblyPartNo">
+          <th mat-header-cell *matHeaderCellDef>Assembly Part No.</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.assemblyPartNo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="derivedAssemblyPartNo">
+          <th mat-header-cell *matHeaderCellDef>Derived Assembly Part No.</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.derivedAssemblyPartNo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="softwarePartNo">
+          <th mat-header-cell *matHeaderCellDef>Software Part No.</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.softwarePartNo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="hardwarePartNo">
+          <th mat-header-cell *matHeaderCellDef>Hardware Part No.</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.hardwarePartNo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastChecked">
+          <th mat-header-cell *matHeaderCellDef>Last Checked</th>
+          <td mat-cell *matCellDef="let element">
+            {{ convertToDate(element.lastChecked, "DD-MM-YYYY") | date }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="etisDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: etisDisplayedColumns"></tr>
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+</main>
+<mat-divider></mat-divider>

@@ -1,0 +1,166 @@
+main {
+  width: 100vw;
+  max-width: 100vw;
+
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+  grid-template:
+    "data carousel" auto
+    "links carousel" auto
+    "dates carousel" auto
+    "parts parts" auto
+    / 2fr 1fr;
+
+  .data {
+    grid-area: data;
+
+    display: grid;
+    grid-template:
+      "name status" auto
+      "vin ." auto
+      "order ." auto
+      "colors colors" auto/ 1fr 1fr;
+
+    h1 {
+      grid-area: name;
+    }
+
+    h2 {
+      grid-area: status;
+    }
+
+    .vin {
+      grid-area: vin;
+    }
+
+    .order {
+      grid-area: order;
+    }
+
+    .color-blocks {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+
+      grid-area: colors;
+    }
+  }
+
+  .links {
+    grid-area: links;
+  }
+
+  carousel {
+    grid-area: carousel;
+  }
+
+  .dates {
+    grid-area: dates;
+  }
+
+  .parts {
+    grid-area: parts;
+  }
+}
+
+table,
+mat-accordion {
+  width: 100%;
+  max-width: 100%;
+}
+
+.color-circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+
+.color-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h4 {
+    margin: 0;
+  }
+
+  .color-circle {
+    border: 3px solid rgb(206, 206, 206);
+    box-shadow: 3px 3px 3px rgb(37, 37, 37);
+    margin: 5px;
+  }
+}
+
+td {
+  min-width: 100px;
+}
+
+@media screen and (max-width: 1650px) {
+  main {
+    grid-template:
+      "data carousel" auto
+      "links carousel" auto
+      "dates dates" auto
+      "parts parts" auto
+      / 1fr 1fr;
+
+    .data {
+      grid-template:
+        "name" auto
+        "status" auto
+        "vin" auto
+        "order" auto
+        "colors" auto/ 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  main {
+    grid-template:
+      "data" auto
+      "carousel" auto
+      "links" auto
+      "dates" auto
+      "parts" auto
+      / 1fr;
+
+    .data {
+      grid-template:
+        "name status" auto
+        "vin order" auto
+        "colors colors" auto/ 1fr 1fr;
+    }
+
+    carousel {
+      margin: 0 auto;
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  main {
+    padding: 10px;
+
+    mat-accordion {
+      max-width: calc(100vw - 20px);
+
+      table {
+        max-width: calc(100vw - 68px);
+        display: block;
+        overflow-x: auto;
+      }
+    }
+
+    .data {
+      grid-template:
+        "name" auto
+        "status" auto
+        "vin" auto
+        "order" auto
+        "colors" auto/ 1fr;
+    }
+  }
+}
